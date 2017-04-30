@@ -1,0 +1,64 @@
+(Question 3)
+
+import numpy as np
+spacing=[31,101,301,1001]
+for sp in spacing:
+    x=np.linspace(0,(np.pi/2),sp)
+    y=np.cos(x)
+    dx=x[1]-x[0]
+    tot=y.sum()*dx
+    err=np.abs(tot-1.0);
+    print 'the integral with dx= ' + repr(dx) +' is ' + repr(tot) + '   and the error is ' + repr(err)
+
+
+_____________________________________________________________________________________________________________________
+
+
+(Question 4)
+
+import numpy as np
+spacing=[31,101,301,1001]
+for sp in spacing:
+    x=np.linspace(0,(np.pi/2),sp)
+
+evens = x[2:-1:2]
+odds = x[1:-1:2]
+print 'the even points are '+ repr(evens)
+print 'the odd points are '+ repr(odds)
+
+
+
+___________________________________________________________________________________________________________________
+
+(Question 5 & 6)
+
+
+from matplotlib import pyplot as plt
+import numpy as np
+spacing=[31,101,301,1001]
+points = [11, 31, 101, 301, 1001, 3001, 10001, 30001, 100001]
+points = np.array(points)
+for sp in spacing:
+    x=np.linspace(0,(np.pi/2),sp)
+    dx = np.pi / 2 / (sp)*2
+    evens = x[2:-1:2]
+    odds = x[1:-1:2]
+    tot = np.sum(evens) / 3 + np.sum(odds) * 2 / 3 + x[0] / 6 + x[-1] / 6
+    integ= tot * dx
+    simperr=np.abs(integ-1.0)
+    print 'the simpson integral is ' +repr(integ)+ '  and the error is '+ repr(simperr)
+
+
+    simps_err = np.zeros(points.size)
+    simple_err = np.zeros(points.size)
+    for l in range(points.size):
+        n = points
+        simps_err[l] = np.abs(simperr)
+        #simple_err[l] = np.abs(integrate_cos_simple(n) - 1)
+    #plt.plot(points, err)
+    plt.plot(points, simps_err)
+    axis = plt.gca()
+
+    axis.set_yscale('log')
+    axis.set_xscale('log')
+    plt.show()

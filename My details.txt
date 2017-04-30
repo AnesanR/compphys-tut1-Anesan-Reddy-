@@ -1,0 +1,6 @@
+Name: Anesan
+Surname: Reddy
+
+I am doing Hybrid encoding for Quantum Key Distribution as my honours project.
+
+I would like to learn to be more efficient in my logic when programming.
